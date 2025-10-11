@@ -1,0 +1,124 @@
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+
+const formSchema = z.object({
+  name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
+  email: z.string().email({ message: "Por favor, insira um email válido." }),
+  company: z.string().optional(),
+  message: z.string().min(10, { message: "A mensagem deve ter pelo menos 10 caracteres." }),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
+const ContactForm = () => {
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+    toast.success("Orçamento solicitado com sucesso!", {
+      description: "Entraremos em contato em breve com sua proposta personalizada.",
+    });
+    form.reset();
+  };
+
+  return (
+    <section className="py-20 bg-gradient-to-b from-muted/20 to-background">
+        <div className="container mx-auto px-4">
+            <Card className="max-w-2xl mx-auto hover-lift">
+                <CardHeader className="text-center">
+                    <CardTitle className="text-3xl lg:text-5xl font-bold mb-4">
+                        Solicite seu <span className="gradient-text">Orçamento</span>
+                    </CardTitle>
+                    <CardDescription className="text-xl text-muted-foreground">
+                        Preencha o formulário abaixo com os detalhes da sua configuração. Nossa equipe entrará em contato em breve.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Nome Completo</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Seu nome completo" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="seu.email@empresa.com" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="company"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Empresa (Opcional)</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Nome da sua empresa" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="message"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Mensagem</FormLabel>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder="Descreva o que você precisa ou inclua detalhes adicionais sobre sua configuração."
+                                                className="min-h-[120px]"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit" variant="hero" className="w-full text-lg">
+                                Enviar Solicitação
+                            </Button>
+                        </form>
+                    </Form>
+                </CardContent>
+            </Card>
+        </div>
+    </section>
+  );
+};
+
+export default ContactForm;

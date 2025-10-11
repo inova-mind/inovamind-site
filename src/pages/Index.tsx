@@ -16,6 +16,7 @@ const Index = () => {
       <Configurator />
       <About />
       <Contact />
+      <div style={{ height: '2rem' }} />
       <Footer />
       <WhatsAppButton />
     </div>

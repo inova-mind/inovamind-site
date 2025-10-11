@@ -10,7 +10,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-card/60 backdrop-blur-sm border-t border-border">
+    <footer className="bg-card/60 backdrop-blur-sm border-t border-border mt-[-5rem]">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}

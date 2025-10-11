@@ -1,6 +1,6 @@
 import { Rocket, Eye, Gem, CheckCircle } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import aiAutomationImage from "@/assets/ai-automation.png";
+import aiAutomationImage from "@/assets/ai-automation.jpeg";
 
 const About = () => {
   const { ref: titleRef } = useScrollReveal();

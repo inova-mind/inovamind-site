@@ -203,7 +203,7 @@ const AIConfigurator = () => {
   };
 
   if (currentStep === 5) {
-    return <ContactForm />;
+    return <ContactForm config={{ selectedSegment, selectedFunctionalities, selectedIntegrations, selectedTemperature, customName }} />;
   }
 
   return (
@@ -382,16 +382,25 @@ const AIConfigurator = () => {
                     <div className="space-y-3">
                       <Label>Gênero</Label>
                       <div className="grid grid-cols-3 gap-2">
-                        {temperatureOptions.filter(opt => opt.type === 'gender').map((option) => (
-                          <Button
-                            key={option.id}
-                            variant={selectedTemperature.gender === option.id ? "ai-primary" : "outline"}
-                            size="sm"
-                            onClick={() => handleTemperatureSelect('gender', option.id)}
-                          >
-                            {option.name}
-                          </Button>
-                        ))}
+                        {temperatureOptions.filter(opt => opt.type === 'gender').map((option) => {
+                          const isSelected = selectedTemperature.gender === option.id;
+                          return (
+                            <div
+                              key={option.id}
+                              className={`flex items-center justify-center gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                                isSelected
+                                  ? 'bg-primary/10 border-primary'
+                                  : 'bg-background hover:bg-muted/50 border-border'
+                              }`}
+                              onClick={() => handleTemperatureSelect('gender', option.id)}
+                            >
+                              <div className="text-center">
+                                <div className="font-semibold">{option.name}</div>
+                              </div>
+                              {isSelected && <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
 
@@ -399,19 +408,26 @@ const AIConfigurator = () => {
                     <div className="space-y-3">
                       <Label>Nível de Criatividade</Label>
                       <div className="space-y-2">
-                        {temperatureOptions.filter(opt => opt.type === 'creativity').map((option) => (
-                          <Button
-                            key={option.id}
-                            variant={selectedTemperature.creativity === option.id ? "ai-primary" : "outline"}
-                            className="w-full justify-start h-auto p-3"
-                            onClick={() => handleTemperatureSelect('creativity', option.id)}
-                          >
-                            <div className="text-left">
-                              <div className="font-semibold">{option.name}</div>
-                              <div className="text-xs opacity-80">{option.description}</div>
+                        {temperatureOptions.filter(opt => opt.type === 'creativity').map((option) => {
+                          const isSelected = selectedTemperature.creativity === option.id;
+                          return (
+                            <div
+                              key={option.id}
+                              className={`flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                                isSelected
+                                  ? 'bg-primary/10 border-primary'
+                                  : 'bg-background hover:bg-muted/50 border-border'
+                              }`}
+                              onClick={() => handleTemperatureSelect('creativity', option.id)}
+                            >
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-sm">{option.name}</h4>
+                                <p className="text-xs text-muted-foreground">{option.description}</p>
+                              </div>
+                              {isSelected && <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />}
                             </div>
-                          </Button>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
 
@@ -419,19 +435,26 @@ const AIConfigurator = () => {
                     <div className="space-y-3">
                       <Label>Personalidade</Label>
                       <div className="space-y-2">
-                        {temperatureOptions.filter(opt => opt.type === 'personality').map((option) => (
-                          <Button
-                            key={option.id}
-                            variant={selectedTemperature.personality === option.id ? "ai-primary" : "outline"}
-                            className="w-full justify-start h-auto p-3"
-                            onClick={() => handleTemperatureSelect('personality', option.id)}
-                          >
-                            <div className="text-left">
-                              <div className="font-semibold">{option.name}</div>
-                              <div className="text-xs opacity-80">{option.description}</div>
+                        {temperatureOptions.filter(opt => opt.type === 'personality').map((option) => {
+                          const isSelected = selectedTemperature.personality === option.id;
+                          return (
+                            <div
+                              key={option.id}
+                              className={`flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                                isSelected
+                                  ? 'bg-primary/10 border-primary'
+                                  : 'bg-background hover:bg-muted/50 border-border'
+                              }`}
+                              onClick={() => handleTemperatureSelect('personality', option.id)}
+                            >
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-semibold text-sm">{option.name}</h4>
+                                <p className="text-xs text-muted-foreground">{option.description}</p>
+                              </div>
+                              {isSelected && <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />}
                             </div>
-                          </Button>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   </CardContent>

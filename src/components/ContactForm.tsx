@@ -6,36 +6,65 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
   email: z.string().email({ message: "Por favor, insira um email válido." }),
+  celular: z.string().min(10, { message: "O celular deve ter pelo menos 10 caracteres." }),
   company: z.string().optional(),
   message: z.string().min(10, { message: "A mensagem deve ter pelo menos 10 caracteres." }),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-const ContactForm = () => {
+interface ConfiguratorData {
+  selectedSegment: string;
+  selectedFunctionalities: string[];
+  selectedIntegrations: string[];
+  selectedTemperature: Record<string, string>;
+  customName: string;
+}
+
+const ContactForm = ({ config }: { config: ConfiguratorData }) => {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
+      celular: "",
       company: "",
       message: "",
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-    toast.success("Orçamento solicitado com sucesso!", {
-      description: "Entraremos em contato em breve com sua proposta personalizada.",
-    });
-    form.reset();
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch("https://app.dashtechsolucoes.com/webhook/send-lead-data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${import.meta.env.VITE_WEBHOOK_TOKEN}`,
+        },
+        body: JSON.stringify({ ...data, ...config }),
+      });
+
+      if (response.ok) {
+        toast.success("Orçamento solicitado com sucesso!", {
+          description: "Entraremos em contato em breve com sua proposta personalizada.",
+        });
+        form.reset();
+      } else {
+        toast.error("Erro ao solicitar orçamento.", {
+          description: "Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente mais tarde.",
+        });
+      }
+    } catch (error) {
+      toast.error("Erro ao solicitar orçamento.", {
+        description: "Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente mais tarde.",
+      });
+    }
   };
 
   return (
@@ -74,6 +103,19 @@ const ContactForm = () => {
                                         <FormLabel>Email</FormLabel>
                                         <FormControl>
                                             <Input placeholder="seu.email@empresa.com" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="celular"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Celular</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="(99) 99999-9999" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

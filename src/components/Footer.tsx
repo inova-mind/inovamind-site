@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
-import logo from "@/assets/logo-inovamind.webp";
+import logo from "@/assets/logo-inovamind.png";
 
 const Footer = () => {
   const scrollToSection = (id: string) => {

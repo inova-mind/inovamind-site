@@ -77,10 +77,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
                     <a 
-                      href="mailto:comercial@inovamind.dev" 
+                      href="mailto:administrativo@inovamind.dev" 
                       className="text-muted-foreground hover:text-secondary transition-colors"
                     >
-                      comercial@inovamind.dev
+                      administrativo@inovamind.dev
                     </a>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const Contact = () => {
               <div className="pt-6">
                 <h4 className="font-semibold mb-4">Horário de Atendimento</h4>
                 <div className="space-y-2 text-muted-foreground">
-                  <p>Segunda a Sexta: 9h às 18h</p>
+                  <p>Segunda a Sexta: 8h às 17h</p>
                   <p>Suporte 24/7 para clientes</p>
                 </div>
               </div>

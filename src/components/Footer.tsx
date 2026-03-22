@@ -106,6 +106,9 @@ const Footer = () => {
                   <br />
                   CEP: 30.160-040, Brasil
                 </span>
+                <span>
+                  <a href="https://thalesfernandes.dev/" target="_blank">ThalesFernandes.dev</a> | <a href="https://victorgabriel.dev/" target="_blank">VictorGabriel.dev</a>
+                </span>
               </li>
             </ul>
           </div>

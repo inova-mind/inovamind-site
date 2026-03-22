@@ -99,7 +99,7 @@ const Footer = () => {
                   >
                     ThalesFernandes.dev
                   </a>
-                  {" | "}
+
                   <a 
                     href="https://victorgabriel.dev/" 
                     target="_blank" 

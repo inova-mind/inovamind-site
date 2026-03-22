@@ -87,18 +87,47 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contato</h4>
             <ul className="space-y-3 text-muted-foreground">
+          
+              {/* Sites */}
+              <li className="flex items-start gap-2">
+                <span className="ml-7">
+                  <a 
+                    href="https://thalesfernandes.dev/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    ThalesFernandes.dev
+                  </a>
+                  {" | "}
+                  <a 
+                    href="https://victorgabriel.dev/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    VictorGabriel.dev
+                  </a>
+                </span>
+              </li>
+          
+              {/* Email */}
               <li className="flex items-start gap-2">
                 <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <a href="mailto:comercial@inovamind.dev" className="hover:text-primary transition-colors">
-                  comercial@inovamind.dev
+                <a href="mailto:administrativo@inovamind.dev" className="hover:text-primary transition-colors">
+                  administrativo@inovamind.dev
                 </a>
               </li>
+          
+              {/* Phone */}
               <li className="flex items-start gap-2">
                 <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <a href="tel:+5547996903077" className="hover:text-primary transition-colors">
                   (47) 99690-3077
                 </a>
               </li>
+          
+              {/* Address */}
               <li className="flex items-start gap-2">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span>
@@ -106,13 +135,10 @@ const Footer = () => {
                   <br />
                   CEP: 30.160-040, Brasil
                 </span>
-                <span>
-                  <a href="https://thalesfernandes.dev/" target="_blank">ThalesFernandes.dev</a> | <a href="https://victorgabriel.dev/" target="_blank">VictorGabriel.dev</a>
-                </span>
               </li>
+          
             </ul>
           </div>
-        </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border">

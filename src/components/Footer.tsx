@@ -37,7 +37,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Links Rápidos</h4>
             <ul className="space-y-2">
               <li>
-                <button 
+                <button
                   onClick={() => scrollToSection("home")}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
@@ -45,7 +45,7 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => scrollToSection("services")}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
@@ -53,7 +53,7 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => scrollToSection("configurator")}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
@@ -61,7 +61,7 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => scrollToSection("about")}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
@@ -87,22 +87,21 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contato</h4>
             <ul className="space-y-3 text-muted-foreground">
-          
+
               {/* Sites */}
               <li className="flex items-start gap-2">
-                <span className="ml-7">
-                  <a 
-                    href="https://thalesfernandes.dev/" 
-                    target="_blank" 
+                <span className="ml-7 flex flex-col gap-1">
+                  <a
+                    href="https://thalesfernandes.dev/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-primary transition-colors"
                   >
                     ThalesFernandes.dev
                   </a>
-
-                  <a 
-                    href="https://victorgabriel.dev/" 
-                    target="_blank" 
+                  <a
+                    href="https://victorgabriel.dev/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-primary transition-colors"
                   >
@@ -110,7 +109,7 @@ const Footer = () => {
                   </a>
                 </span>
               </li>
-          
+
               {/* Email */}
               <li className="flex items-start gap-2">
                 <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -118,7 +117,7 @@ const Footer = () => {
                   administrativo@inovamind.dev
                 </a>
               </li>
-          
+
               {/* Phone */}
               <li className="flex items-start gap-2">
                 <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -126,7 +125,7 @@ const Footer = () => {
                   (47) 99690-3077
                 </a>
               </li>
-          
+
               {/* Address */}
               <li className="flex items-start gap-2">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -136,9 +135,10 @@ const Footer = () => {
                   CEP: 30.160-040, Brasil
                 </span>
               </li>
-          
+
             </ul>
           </div>
+        </div> {/* ✅ Fechamento correto do grid */}
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border">
